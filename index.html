@@ -1,818 +1,446 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Felipe Carneiro | Guided by data. Driven by strategy.</title>
-
     <!-- Google Fonts -->
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
-
     <!-- Font Awesome for Icons -->
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-   
-
+    
     <style>
-
         /* CSS Variables - Urban Tropicalista Vibe */
-
         :root {
-
             --bg-dark: #071710; /* Very dark green/black */
-
             --bg-card: rgba(15, 36, 25, 0.6);
-
             --brazil-green: #00A859;
-
             --neon-lime: #CCFF00; /* Urban streetwear accent */
-
             --text-light: #EAE6DF;
-
             --text-muted: #A3B8A8;
-
             --font-heading: 'Syne', sans-serif;
-
             --font-body: 'Inter', sans-serif;
-
             --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-
         }
-
 
         * {
-
             margin: 0;
-
             padding: 0;
-
             box-sizing: border-box;
-
         }
-
 
         body {
-
             background-color: var(--bg-dark);
-
             color: var(--text-light);
-
             font-family: var(--font-body);
-
             line-height: 1.6;
-
             overflow-x: hidden;
-
             -webkit-font-smoothing: antialiased;
-
         }
-
 
         ::selection {
-
             background-color: var(--neon-lime);
-
             color: var(--bg-dark);
-
         }
-
 
         /* Ambient Background Glows */
-
         .ambient-glow {
-
             position: absolute;
-
             width: 50vw;
-
             height: 50vw;
-
             background: radial-gradient(circle, rgba(0, 168, 89, 0.15) 0%, rgba(7, 23, 16, 0) 70%);
-
             border-radius: 50%;
-
             z-index: -1;
-
             filter: blur(60px);
-
         }
-
         .glow-1 { top: -20%; left: -10%; }
-
         .glow-2 { bottom: 10%; right: -10%; background: radial-gradient(circle, rgba(204, 255, 0, 0.08) 0%, rgba(7, 23, 16, 0) 70%); }
 
-
         /* Typography */
-
         h1, h2, h3 {
-
             font-family: var(--font-heading);
-
             font-weight: 800;
-
             line-height: 1.1;
-
         }
-
 
         .container {
-
             max-width: 1200px;
-
             margin: 0 auto;
-
             padding: 0 5%;
-
         }
-
 
         /* Hero Section */
-
         #hero {
-
             height: 100vh;
-
             display: flex;
-
             flex-direction: column;
-
             justify-content: center;
-
             align-items: flex-start;
-
             position: relative;
-
         }
-
 
         .hero-title {
-
             font-size: clamp(3rem, 10vw, 8rem);
-
             text-transform: uppercase;
-
             letter-spacing: -2px;
-
             color: var(--text-light);
-
             margin-bottom: 1rem;
-
             position: relative;
-
             z-index: 2;
-
         }
-
 
         .hero-title span {
-
             color: var(--neon-lime);
-
         }
-
 
         .tagline {
-
             font-size: clamp(1.2rem, 3vw, 2rem);
-
             font-weight: 300;
-
             color: var(--text-muted);
-
             border-left: 4px solid var(--brazil-green);
-
             padding-left: 1.5rem;
-
             opacity: 0;
-
             transform: translateY(20px);
-
             animation: fadeInUp 1s ease forwards 0.5s;
-
         }
-
 
         /* Home / About Section */
-
         #home {
-
             padding: 8rem 0;
-
             position: relative;
-
         }
-
 
         .about-grid {
-
             display: grid;
-
             grid-template-columns: 1fr;
-
             gap: 4rem;
-
         }
-
 
         @media(min-width: 900px) {
-
             .about-grid {
-
                 grid-template-columns: 8fr 4fr;
-
             }
-
         }
-
 
         .about-text {
-
             font-size: 1.125rem;
-
             color: var(--text-light);
-
         }
-
 
         .about-text p {
-
             margin-bottom: 1.5rem;
-
         }
-
 
         .about-text .lead {
-
             font-family: var(--font-heading);
-
             font-size: clamp(1.8rem, 4vw, 2.5rem);
-
             color: var(--neon-lime);
-
             margin-bottom: 2.5rem;
-
             line-height: 1.2;
-
             font-weight: 700;
-
         }
-
 
         /* Creative Lab Section */
-
         #creative-lab {
-
             padding: 8rem 0;
-
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-
         }
-
 
         .section-title {
-
             font-size: clamp(2.5rem, 6vw, 4rem);
-
             margin-bottom: 4rem;
-
             color: var(--text-light);
-
             display: flex;
-
             align-items: center;
-
             gap: 1rem;
-
         }
-
 
         .section-title::after {
-
             content: '';
-
             flex: 1;
-
             height: 1px;
-
             background: linear-gradient(90deg, var(--brazil-green), transparent);
-
         }
-
 
         .project-list {
-
             display: flex;
-
             flex-direction: column;
-
             gap: 2rem;
-
         }
-
 
         .project-card {
-
             display: flex;
-
             flex-direction: column;
-
             background: var(--bg-card);
-
             border: 1px solid rgba(255, 255, 255, 0.05);
-
             border-radius: 16px;
-
             padding: 3rem;
-
             text-decoration: none;
-
             color: var(--text-light);
-
             transition: var(--transition);
-
             backdrop-filter: blur(10px);
-
             position: relative;
-
             overflow: hidden;
-
         }
-
 
         @media(min-width: 768px) {
-
             .project-card {
-
                 flex-direction: row;
-
                 align-items: center;
-
                 justify-content: space-between;
-
                 gap: 4rem;
-
             }
-
         }
-
 
         .project-card::before {
-
             content: '';
-
             position: absolute;
-
             top: 0; left: 0;
-
             width: 4px;
-
             height: 100%;
-
             background: var(--brazil-green);
-
             transition: var(--transition);
-
             transform: scaleY(0);
-
             transform-origin: bottom;
-
         }
-
 
         .project-card:hover {
-
             transform: translateY(-5px);
-
             border-color: rgba(204, 255, 0, 0.3);
-
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-
             background: rgba(20, 45, 30, 0.8);
-
         }
-
 
         .project-card:hover::before {
-
             transform: scaleY(1);
-
             background: var(--neon-lime);
-
         }
-
 
         .project-content {
-
             flex: 1;
-
         }
-
 
         .project-card h3 {
-
             font-size: 1.8rem;
-
             margin-bottom: 1rem;
-
             transition: var(--transition);
-
         }
-
 
         .project-card:hover h3 {
-
             color: var(--neon-lime);
-
         }
-
 
         .project-card p {
-
             color: var(--text-muted);
-
             font-size: 1rem;
-
         }
-
 
         .project-icon {
-
             font-size: 2.5rem;
-
             color: var(--brazil-green);
-
             transition: var(--transition);
-
             margin-top: 2rem;
-
         }
-
 
         @media(min-width: 768px) {
-
             .project-icon {
-
                 margin-top: 0;
-
             }
-
         }
-
 
         .project-card:hover .project-icon {
-
             color: var(--neon-lime);
-
             transform: translateX(10px) rotate(-45deg);
-
         }
-
 
         /* Footer */
-
         footer {
-
             background: #040d09;
-
             padding: 5rem 0 3rem 0;
-
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-
         }
-
 
         .footer-content {
-
             display: flex;
-
             flex-direction: column;
-
             justify-content: space-between;
-
             align-items: center;
-
             gap: 2rem;
-
         }
-
 
         @media(min-width: 768px) {
-
             .footer-content {
-
                 flex-direction: row;
-
             }
-
         }
-
 
         .footer-info h3 {
-
             font-size: 1.5rem;
-
             margin-bottom: 0.5rem;
-
         }
-
 
         .footer-info p {
-
             color: var(--text-muted);
-
             display: flex;
-
             align-items: center;
-
             gap: 0.5rem;
-
         }
-
 
         .footer-info p i {
-
             color: var(--brazil-green);
-
         }
-
 
         .social-links {
-
             display: flex;
-
             gap: 1.5rem;
-
         }
-
 
         .social-links a {
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
             width: 50px;
-
             height: 50px;
-
             border-radius: 50%;
-
             background: rgba(255,255,255,0.05);
-
             color: var(--text-light);
-
             font-size: 1.2rem;
-
             text-decoration: none;
-
             transition: var(--transition);
-
             border: 1px solid rgba(255,255,255,0.1);
-
         }
-
 
         .social-links a:hover {
-
             background: var(--neon-lime);
-
             color: var(--bg-dark);
-
             transform: translateY(-5px);
-
             border-color: var(--neon-lime);
-
         }
-
 
         /* Animations */
-
         @keyframes fadeInUp {
-
             to {
-
                 opacity: 1;
-
                 transform: translateY(0);
-
             }
-
         }
-
 
         .reveal {
-
             opacity: 0;
-
             transform: translateY(30px);
-
             transition: all 0.8s ease-out;
-
         }
-
 
         .reveal.active {
-
             opacity: 1;
-
             transform: translateY(0);
-
         }
-
     </style>
-
 </head>
-
 <body>
 
-
     <div class="ambient-glow glow-1"></div>
-
     <div class="ambient-glow glow-2"></div>
 
-
     <!-- Hero Section -->
-
     <section id="hero" class="container">
-
         <h1 class="hero-title reveal active">FELIPE<br><span>CARNEIRO</span></h1>
-
         <p class="tagline">Guided by data. Driven by strategy.</p>
-
     </section>
-
 
     <!-- Home Section -->
-
     <section id="home" class="container reveal">
-
         <div class="about-grid">
-
             <div class="about-text">
-
                 <p class="lead">Creativity doesn't happen in a vacuum.</p>
-
                 <p>Behind every great idea, there is always a question, a behavior, an opportunity, or a problem that needs to be understood. It is precisely in this gap, between creative intuition and real-world insights, where my work thrives.</p>
-
                 <p>I believe that data, culture, and technology can amplify creativity rather than restrict it. Data helps reveal patterns and behaviors; culture provides the context in which people live; and creativity transforms these discoveries into ideas that carry deep meaning.</p>
-
                 <p>This synergy defines my approach to Creative Strategy: investigating before creating, transforming raw information into actionable insights, and turning those insights into strategies that resonate with brands, cultural projects, and people.</p>
-
                 <p>Technology is also an integral part of this process. Artificial Intelligence, analytics tools, and new production methods are not, in my view, replacements for human creativity. Instead, they are powerful instruments to experiment further, test possibilities, and design solutions with greater agility and purpose.</p>
-
                 <p>In the end, strategy is not just about hitting numbers. It is about understanding what makes an idea work and discovering how to make it even more impactful.</p>
-
                 <p>My goal is to build strategies that seamlessly connect creativity and intelligence, transforming data into possibilities, and those possibilities into experiences that truly matter.</p>
-
             </div>
-
         </div>
-
     </section>
-
 
     <!-- Creative Lab Section -->
-
     <section id="creative-lab" class="container reveal">
-
         <h2 class="section-title">Creative Lab</h2>
-
         <div class="project-list">
-
-           
-
+            
             <!-- Project 1 -->
-
             <a href="https://datastudio.google.com/reporting/de3bd434-c79a-46d0-99ef-24c1ca4a5b30" target="_blank" class="project-card reveal">
-
                 <div class="project-content">
-
                     <h3>Traficc Acquisition Efficiency: Google Merchandise Store (GA4)</h3>
-
                     <p>A self-initiated data analysis project developed using the public Google Analytics 4 (GA4) demo account for the Google Merchandise Store. The project involved building a Looker Studio dashboard to evaluate acquisition channel performance, correlating traffic volume, user engagement, and revenue to uncover high-impact investment opportunities.<br><br>
-
                     The analysis revealed that the highest-volume channel is not necessarily the most efficient, underscoring the importance of assessing traffic quality and value creation before allocating budgets. Additionally, the project identified an anomalous revenue spike that warrants deeper investigation prior to future strategic decisions.<br><br>
-
                     Beyond technical analysis, I approached this project as an exercise in data storytelling: every chart was intentionally titled to deliver a clear narrative, rather than just display a metric. The dashboard concludes with a dedicated executive insights and strategic recommendations section, translating complex numbers into actionable business decisions, the exact mindset I bring as a Creative Strategist.</p>
-
                 </div>
-
                 <div class="project-icon">
-
                     <i class="fas fa-arrow-right"></i>
-
                 </div>
-
             </a>
-
 
             <!-- Project 2 -->
-
-            <a href="https://drive.google.com/file/d/1R_vv7JSnEZydfo23xtdfgy6lDRaRSDjW/view?usp=sharing" target="_blank" class="project-card reveal">
-
+            <a href="https://drive.google.com/file/d/14Z11hm6Sd054EkTOdfIw6I1j38Pgay1I/view?usp=sharing" target="_blank" class="project-card reveal">
                 <div class="project-content">
-
                     <h3>Saladearte: Your scream, our legacy - A Strategic Communication Plan</h3>
-
                     <p>A self-initiated strategic communication campaign designed for Saladearte, an art cinema circuit in Salvador, addressing the core challenge of maintaining the relevance of the movie theater experience in a streaming-dominated market.<br><br>
-
-                    Driven by the insight, 'how do you persuade someone to visit a cinema when they carry a universe of films in their pocket?', I developed the concept 'Your Screen, Our Legacy.' This campaign positions cinema not merely as an entertainment option, but as a vital cultural heritage to be preserved. The comprehensive framework integrates international benchmarking, brand strategy, immersive cultural experiences, strategic
-
-partnerships, and digital expansion, alongside visual identity, tone of voice, and KPIs.<br><br>
-
+                    Driven by the insight, 'how do you persuade someone to visit a cinema when they carry a universe of films in their pocket?', I developed the concept 'Your Screen, Our Legacy.' This campaign positions cinema not merely as an entertainment option, but as a vital cultural heritage to be preserved. The comprehensive framework integrates international benchmarking, brand strategy, immersive cultural experiences, strategic partnerships, and digital expansion, alongside visual identity, tone of voice, and KPIs.<br><br>
                     While speculative and independent of any commercial ties to Saladearte, this project showcases my ability to translate deep market research and industry benchmarks into a cohesive, end-to-end communication strategy—from initial insight to execution and performance measurement.</p>
-
                 </div>
-
                 <div class="project-icon">
-
                     <i class="fas fa-arrow-right"></i>
-
                 </div>
-
             </a>
 
+            <!-- Project 3 -->
+            <a href="https://drive.google.com/file/d/1KvoUOxxp46BdqQiXCbB_Z-A0rJL-HrAY/view?usp=sharing" target="_blank" class="project-card reveal">
+                <div class="project-content">
+                    <h3>The House of Dende: Dendezeiro Internationalization Strategy</h3>
+                    <p>An independent creative strategy project developed as an internationalization exercise for Dendezeiro, a Bahian fashion brand, exploring its potential presence at Milan Fashion Week. The proposal addresses the challenge of expanding the brand into the global fashion scene without diluting its cultural identity, positioning Salvador, its ancestry, and its local knowledge as strategic assets. The project resulted in “The House of Dende”, an immersive embassy of culture, design, and fashion designed to connect the brand with the international market through a contemporary, sensory experience.<br><br>
+                    The strategy integrates branding, brand experience, technology, and communications into a four-phase activation plan, from building anticipation to establishing a cultural presence across Milan and Paris. The experience combines scenography inspired by Bahia’s Recôncavo region, gastronomy, olfactory identity, soundscape, and interactive technology to translate Dendezeiro’s cultural codes into an international experience. The project also defines impact KPIs and long-term strategies designed to turn a temporary activation into a sustained presence in the European market.</p>
+                </div>
+                <div class="project-icon">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
 
         </div>
-
     </section>
 
-
     <!-- Footer -->
-
     <footer>
-
         <div class="container footer-content">
-
             <div class="footer-info">
-
                 <h3>Felipe Carneiro</h3>
-
                 <p><i class="fas fa-map-marker-alt"></i> Salvador, Bahia</p>
-
             </div>
-
             <div class="social-links">
-
                 <a href="mailto:felipemateussantos16@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-
                 <a href="https://www.linkedin.com/in/felipesantoscarneiro" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-
                 <a href="https://wa.me/557193768178" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-
             </div>
-
         </div>
-
     </footer>
 
-
     <!-- JavaScript for scroll animations -->
-
     <script>
-
         function reveal() {
-
             var reveals = document.querySelectorAll(".reveal");
-
             for (var i = 0; i < reveals.length; i++) {
-
                 var windowHeight = window.innerHeight;
-
                 var elementTop = reveals[i].getBoundingClientRect().top;
-
                 var elementVisible = 100;
-
                 if (elementTop < windowHeight - elementVisible) {
-
                     reveals[i].classList.add("active");
-
                 }
-
             }
-
         }
-
         window.addEventListener("scroll", reveal);
-
         reveal(); // Trigger on load
-
     </script>
-
 </body>
-
 </html>
-
